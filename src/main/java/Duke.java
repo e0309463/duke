@@ -45,14 +45,24 @@ public class Duke {
                     System.out.println(to.toString());
                     System.out.println("Now you have " + list.size() + " tasks in the list.");
                 } else if (name.startsWith("deadline")) {
-                    t.description = name.split("/")[0].substring(9);
+                    if(name.length() == 8) {
+                        throw new DukeException("OOPS!!! The description of a deadline cannot be empty.");
+                    }
+                    else{
+                        t.description = name.split("/")[0].substring(9);
+                    }
                     Deadline d = new Deadline(t.description, name.split("/")[1].substring(3));
                     list.add(d);
                     System.out.println("Got it. I've added this task:");
                     System.out.println(d.toString());
                     System.out.println("Now you have " + list.size() + " tasks in the list.");
                 } else if (name.startsWith("event")) {
-                    t.description = name.split("/")[0].substring(6);
+                    if(name.length() == 5) {
+                        throw new DukeException("OOPS!!! The description of a event cannot be empty.");
+                    }
+                    else{
+                        t.description = name.split("/")[0].substring(6);
+                    }
                     Event ev = new Event(t.description, name.split("/")[1].substring(3));
                     list.add(ev);
                     System.out.println("Got it. I've added this task:");
