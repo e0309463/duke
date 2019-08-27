@@ -5,14 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Duke {
-    public static class DukeException extends Exception {
-        public DukeException(String errorMessage){
-            super(errorMessage);
-        }
-    }
-
-        protected String type;
-        protected String datetime;
 
     public static void main(String[] args) throws IOException {
         String logo = " ____        _        \n"
