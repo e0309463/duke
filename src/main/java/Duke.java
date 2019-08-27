@@ -16,6 +16,7 @@ public class Duke {
         List<Task> list = new ArrayList<Task>();
         boolean flag = true;
         while(flag) {
+            try {
                 String name = reader.readLine();
                 Task t = new Task(name);
                 if (name.equals("bye")) {
@@ -32,7 +33,12 @@ public class Duke {
                     System.out.println("Nice! I've marked this task as done: ");
                     System.out.println("[" + list.get(numbercheck).getStatusIcon() + "]" + list.get(numbercheck).description);
                 } else if (name.startsWith("todo")) {
-                    t.description = name.substring(5);
+                    if(name.length() <= 4) {
+                        throw new DukeException("OOPS!!! The description of a todo cannot be empty.");
+                    }
+                    else{
+                        t.description = name.substring(5);
+                    }
                     Todo to = new Todo(t.description);
                     list.add(to);
                     System.out.println("Got it. I've added this task:");
@@ -40,22 +46,25 @@ public class Duke {
                     System.out.println("Now you have " + list.size() + " tasks in the list.");
                 } else if (name.startsWith("deadline")) {
                     t.description = name.split("/")[0].substring(9);
-                    Deadline d = new Deadline(t.description,name.split("/")[1].substring(3));
+                    Deadline d = new Deadline(t.description, name.split("/")[1].substring(3));
                     list.add(d);
                     System.out.println("Got it. I've added this task:");
                     System.out.println(d.toString());
                     System.out.println("Now you have " + list.size() + " tasks in the list.");
                 } else if (name.startsWith("event")) {
                     t.description = name.split("/")[0].substring(6);
-                    Event ev = new Event(t.description,name.split("/")[1].substring(3));
+                    Event ev = new Event(t.description, name.split("/")[1].substring(3));
                     list.add(ev);
                     System.out.println("Got it. I've added this task:");
                     System.out.println(ev.toString());
                     System.out.println("Now you have " + list.size() + " tasks in the list.");
                 } else {
-                    list.add(t);
-                    System.out.println("added: "+ name);
+                    throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");
                 }
+            }
+            catch (DukeException e){
+                System.out.println(e.getMessage());
+            }
         }
 
     }
