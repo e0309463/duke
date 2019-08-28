@@ -1,6 +1,4 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,8 +11,10 @@ public class Duke {
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        List<Task> list = new ArrayList<Task>();
+        List<Task> list;
+        Storage store = new Storage();
         boolean flag = true;
+        list = store.Readfile();
         while(flag) {
             try {
                 String name = reader.readLine();
@@ -22,17 +22,20 @@ public class Duke {
                 if (name.equals("bye")) {
                     flag = false;
                     System.out.println("Bye! Hope to see you again soon!");
-                } else if (name.equals("list")) {
+                }
+                else if (name.equals("list")) {
                     System.out.println("Here are the tasks in your list:");
                     for (int i = 0; i < list.size(); i++) {
                         System.out.println(i + 1 + "." + list.get(i).toString());
                     }
-                } else if (name.startsWith("done")) {
+                }
+                else if (name.startsWith("done")) {
                     int numbercheck = Integer.parseInt(name.substring(5)) - 1;
                     list.get(numbercheck).isDone = true;
                     System.out.println("Nice! I've marked this task as done: ");
                     System.out.println("[" + list.get(numbercheck).getStatusIcon() + "]" + list.get(numbercheck).description);
-                } else if (name.startsWith("todo")) {
+                }
+                else if (name.startsWith("todo")) {
                     if(name.length() <= 4) {
                         throw new DukeException("OOPS!!! The description of a todo cannot be empty.");
                     }
@@ -44,35 +47,51 @@ public class Duke {
                     System.out.println("Got it. I've added this task:");
                     System.out.println(to.toString());
                     System.out.println("Now you have " + list.size() + " tasks in the list.");
-                } else if (name.startsWith("deadline")) {
+                }
+                else if (name.startsWith("deadline")) {
                     if(name.length() == 8) {
                         throw new DukeException("OOPS!!! The description of a deadline cannot be empty.");
                     }
                     else{
                         t.description = name.split("/")[0].substring(9);
                     }
-                    Deadline d = new Deadline(t.description, name.split("/")[1].substring(3));
+                    Deadline d = new Deadline(t.description, "by: "+name.split("/")[1].substring(3));
                     list.add(d);
                     System.out.println("Got it. I've added this task:");
                     System.out.println(d.toString());
                     System.out.println("Now you have " + list.size() + " tasks in the list.");
-                } else if (name.startsWith("event")) {
+                }
+                else if (name.startsWith("event")) {
                     if(name.length() == 5) {
-                        throw new DukeException("OOPS!!! The description of a event cannot be empty.");
+                        throw new DukeException("OOPS!!! The description of an event cannot be empty.");
                     }
                     else{
                         t.description = name.split("/")[0].substring(6);
                     }
-                    Event ev = new Event(t.description, name.split("/")[1].substring(3));
+                    Event ev = new Event(t.description, "at: "+name.split("/")[1].substring(3));
                     list.add(ev);
                     System.out.println("Got it. I've added this task:");
                     System.out.println(ev.toString());
                     System.out.println("Now you have " + list.size() + " tasks in the list.");
-                } else {
+                }
+                else {
                     throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");
                 }
+                StringBuilder sb = new StringBuilder();
+                for (int i = 0; i < list.size(); i++) {
+                    if (list.get(i).getClass().getName().equals("Deadline")) {
+                        sb.append(list.get(i).toString()+"\n");
+                    }
+                    else if(list.get(i).getClass().getName().equals("Event")){
+                        sb.append(list.get(i).toString()+"\n");
+                    }
+                    else{
+                        sb.append(list.get(i).toString()+"\n");
+                    }
+                }
+                store.Storages(sb.toString());
             }
-            catch (DukeException e){
+            catch (Exception e){
                 System.out.println(e.getMessage());
             }
         }
