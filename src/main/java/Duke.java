@@ -1,9 +1,11 @@
 import java.io.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Duke {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
@@ -14,9 +16,9 @@ public class Duke {
         List<Task> list;
         Storage store = new Storage();
         boolean flag = true;
-        list = store.Readfile();
-        while(flag) {
-            try {
+        try {
+            list = store.Readfile();
+            while(flag) {
                 String name = reader.readLine();
                 Task t = new Task(name);
                 if (name.equals("bye")) {
@@ -55,7 +57,8 @@ public class Duke {
                     else{
                         t.description = name.split("/")[0].substring(9);
                     }
-                    Deadline d = new Deadline(t.description, "by: "+name.split("/")[1].substring(3));
+                    SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                    Deadline d = new Deadline(t.description, fmt.parse(name.split("/")[1].substring(3)));
                     list.add(d);
                     System.out.println("Got it. I've added this task:");
                     System.out.println(d.toString());
@@ -68,7 +71,8 @@ public class Duke {
                     else{
                         t.description = name.split("/")[0].substring(6);
                     }
-                    Event ev = new Event(t.description, "at: "+name.split("/")[1].substring(3));
+                    SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                    Event ev = new Event(t.description, fmt.parse(name.split("/")[1].substring(3)));
                     list.add(ev);
                     System.out.println("Got it. I've added this task:");
                     System.out.println(ev.toString());
@@ -91,10 +95,17 @@ public class Duke {
                 }
                 store.Storages(sb.toString());
             }
-            catch (Exception e){
-                System.out.println(e.getMessage());
+        }
+        catch (DukeException | ParseException | IOException e){
+            if(e instanceof ParseException){
+                System.err.println("Date Time has to be in YYYY-MM-DD HH:mm:ss format");
+            }
+            else {
+                System.err.println(e.getMessage());
             }
         }
-
+//        finally{
+//            System.out.println("Program exiting due to error");
+//        }
     }
 }
