@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class Storage {
     String directory = System.getProperty("user.home");
     String fileName = "sample.txt";
-    String absolutePath = directory + File.separator + fileName;
+    String absolutePath = "C:\\Users\\Jess\\Documents\\GitHub\\duke\\src\\main\\java\\Save";
     protected void Storages(String fileContent) throws IOException{
 
         FileWriter fileWriter = new FileWriter(absolutePath);
@@ -30,12 +30,30 @@ public class Storage {
                 String[] details = sc.nextLine().split("\\|");
                 if (details[0].equals("T")) {
                     Todo t = new Todo(details[2].trim());
+                    if(details[1].equals("\u2713")){
+                        t.isDone = true;
+                    }
+                    else{
+                        t.isDone = false;
+                    }
                     tlist.add(t);
                 } else if (details[0].equals("D")) {
                     Deadline d = new Deadline(details[2].trim(), fmt.parse(details[3].substring(3).trim()));
+                    if(details[1].equals("\u2713")){
+                        d.isDone = true;
+                    }
+                    else{
+                        d.isDone = false;
+                    }
                     tlist.add(d);
                 } else {
                     Event e = new Event(details[2].trim(), fmt.parse(details[3].substring(3).trim()));
+                    if(details[1].equals("\u2713")){
+                        e.isDone = true;
+                    }
+                    else{
+                        e.isDone = false;
+                    }
                     tlist.add(e);
                 }
             }

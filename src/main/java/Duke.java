@@ -32,8 +32,12 @@ public class Duke {
                     }
                 }
                 else if (name.startsWith("done")) {
+                    if (name.equals("done")){
+                        throw new DukeException("The task done number cannot be empty.");
+                    }
                     int numbercheck = Integer.parseInt(name.substring(5)) - 1;
                     list.get(numbercheck).isDone = true;
+
                     System.out.println("Nice! I've marked this task as done: ");
                     System.out.println("[" + list.get(numbercheck).getStatusIcon() + "]" + list.get(numbercheck).description);
                 }
