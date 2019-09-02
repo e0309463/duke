@@ -82,6 +82,19 @@ public class Duke {
                     System.out.println(ev.toString());
                     System.out.println("Now you have " + list.size() + " tasks in the list.");
                 }
+                else if (name.startsWith("delete")) {
+                    if(name.length() == 6) {
+                        throw new DukeException("OOPS!!! The description of a deletion cannot be empty.");
+                    }
+                    else {
+                        int index = Integer.parseInt(name.substring(6).trim()) - 1;
+                        String taskremoved = list.get(index).toString();
+                        list.remove(index);
+                        System.out.println("Noted. I've removed this task: ");
+                        System.out.println(taskremoved);
+                        System.out.println("Now you have " + list.size() + " tasks in the list.");
+                    }
+                }
                 else {
                     throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");
                 }
