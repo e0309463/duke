@@ -1,1 +1,7 @@
 T|✓| kjsdf
+D|✘| buy book|by: Mon Dec 02 12:00:00 SGT 2019
+T|✘| return book
+T|✘| go to school
+T|✓| study for exams
+T|✘| go to bookstore
+T|✘| eat book

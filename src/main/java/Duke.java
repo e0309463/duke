@@ -95,6 +95,23 @@ public class Duke {
                         System.out.println("Now you have " + list.size() + " tasks in the list.");
                     }
                 }
+                else if (name.startsWith("find")) {
+                    if(name.length() == 5){
+                        throw new DukeException("OOPS!!! The description of a search cannot be empty.");
+                    }
+                    else {
+                        ArrayList<Task> searchedlist = new ArrayList<Task>();
+                        for(Task it: list){
+                            if(it.description.contains(name.substring(6).trim())) {
+                                searchedlist.add(it);
+                            }
+                        }
+                        System.out.println("Here are the matching tasks in your list:");
+                        for (int i = 0; i < searchedlist.size(); i++) {
+                            System.out.println(i + 1 + "." + searchedlist.get(i).toString());
+                        }
+                    }
+                }
                 else {
                     throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");
                 }
