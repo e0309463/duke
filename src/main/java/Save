@@ -1,7 +1,2 @@
-T|✓| kjsdf
-D|✘| buy book|by: Mon Dec 02 12:00:00 SGT 2019
-T|✘| return book
-T|✘| go to school
-T|✓| study for exams
-T|✘| go to bookstore
-T|✘| eat book
+E|✘| borrow book|at: Sun Feb 10 12:00:00 SGT 2019
+D|✘| return book|by: Mon Dec 30 12:23:12 SGT 2019

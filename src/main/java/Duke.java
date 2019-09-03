@@ -28,7 +28,7 @@ public class Duke {
                 else if (name.equals("list")) {
                     System.out.println("Here are the tasks in your list:");
                     for (int i = 0; i < list.size(); i++) {
-                        System.out.println(i + 1 + "." + list.get(i).toString());
+                        System.out.println(i + 1 + "." + list.get(i).listformat());
                     }
                 }
                 else if (name.startsWith("done")) {
@@ -51,7 +51,7 @@ public class Duke {
                     Todo to = new Todo(t.description);
                     list.add(to);
                     System.out.println("Got it. I've added this task:");
-                    System.out.println(to.toString());
+                    System.out.println(to.listformat());
                     System.out.println("Now you have " + list.size() + " tasks in the list.");
                 }
                 else if (name.startsWith("deadline")) {
@@ -65,7 +65,7 @@ public class Duke {
                     Deadline d = new Deadline(t.description, fmt.parse(name.split("/")[1].substring(3)));
                     list.add(d);
                     System.out.println("Got it. I've added this task:");
-                    System.out.println(d.toString());
+                    System.out.println(d.listformat());
                     System.out.println("Now you have " + list.size() + " tasks in the list.");
                 }
                 else if (name.startsWith("event")) {
@@ -79,7 +79,7 @@ public class Duke {
                     Event ev = new Event(t.description, fmt.parse(name.split("/")[1].substring(3)));
                     list.add(ev);
                     System.out.println("Got it. I've added this task:");
-                    System.out.println(ev.toString());
+                    System.out.println(ev.listformat());
                     System.out.println("Now you have " + list.size() + " tasks in the list.");
                 }
                 else if (name.startsWith("delete")) {
@@ -138,8 +138,8 @@ public class Duke {
                 System.err.println(e.getMessage());
             }
         }
-//        finally{
-//            System.out.println("Program exiting due to error");
-//        }
+        finally{
+            System.out.println("Program exiting due to error");
+        }
     }
 }

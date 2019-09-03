@@ -12,6 +12,9 @@ public class Event extends Task {
     public String toString() {
         return "E"+ "|" + super.getStatusIcon() + "| " + super.description + "|" + "at: "+at;
     }
+    public String listformat(){
+        return "[E]" + "[" + super.getStatusIcon() + "]" + super.description + "(at:" + at + ")";
+    }
 }
 
 
