@@ -13,15 +13,14 @@ public class Duke {
         try {
             list = store.Readfile();
             while(!isExit) {
-                String command = ui.ReadCommand().split(" ")[0];
-                //Task t = new Task(name);
+                ui.ReadCommand();
+                String command = ui.FullCommand.split(" ")[0];
                 Command c = Parser.parse(command);
                 c.execute(list,ui, store);
-
                 isExit = c.isExit();
             }
         }
-        catch (DukeException | ParseException | IOException e){
+        catch (DukeException | ParseException | IOException | NullPointerException e){
             if(e instanceof ParseException){
                 ui.showDateFormatError();
             }
