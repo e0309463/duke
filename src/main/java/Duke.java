@@ -28,8 +28,8 @@ public class Duke {
                 ui.showErrorMessage(e);
             }
         }
-//        finally{
-//            System.out.println("");
-//        }
+        finally{
+            System.out.println("System exiting");
+        }
     }
 }
