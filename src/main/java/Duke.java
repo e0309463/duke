@@ -2,6 +2,14 @@ import java.io.*;
 import java.text.ParseException;
 import java.util.List;
 
+/**
+ * Returns void main function for duke.
+ *
+ * @param args.
+ * @return Void.
+ * @throws DukeException | ParseException | IOException | NullPointerException
+ */
+
 public class Duke {
     public static void main(String[] args) {
 
