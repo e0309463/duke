@@ -11,13 +11,14 @@ public class Ui {
         return FullCommand;
     }
 
-    protected void showWelcome() {
+    protected String showWelcome() {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
+        return logo;
     }
     protected void showDateFormatError (){
         System.err.println("Date Time has to be in YYYY-MM-DD HH:mm:ss format");
