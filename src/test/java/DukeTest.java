@@ -16,7 +16,7 @@ public class DukeTest {
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n", ui.showWelcome());
     }
-
+//    JUnit testing
 //    @Test
 //   public void test() {
 //        DeadlineCommand deadlineCommand = new DeadlineCommand();
