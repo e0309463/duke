@@ -3,11 +3,9 @@ import java.text.ParseException;
 import java.util.List;
 
 /**
- * Returns void main function for duke.
- *
- * @param args.
+ * Runs the main method to load the duke.txt file into the program and then calls the run method *
+ * @param args
  * @return Void.
- * @throws DukeException | ParseException | IOException | NullPointerException
  */
 
 public class Duke {
