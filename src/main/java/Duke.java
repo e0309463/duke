@@ -2,13 +2,14 @@ import java.io.*;
 import java.text.ParseException;
 import java.util.List;
 
-/**
- * Runs the main method to load the duke.txt file into the program and then calls the run method *
- * @param args
- * @return Void.
- */
+
 
 public class Duke {
+    /**
+     * Runs the main method to load the duke.txt file into the program and then calls the run method *
+     * @param args
+     * @return Void.
+     */
     public static void main(String[] args) {
 
         List<Task> list;
