@@ -3,8 +3,16 @@ import java.text.ParseException;
 import java.util.List;
 
 public class DoneCommand extends Command {
+    /**
+     * Mark a task from the list as done
+     * @param list the TaskList to be used
+     * @param ui the Ui to be used
+     * @param storage the Storage to be used
+     * @throws DukeException when the description of the command is empty
+     * @throws IOException
+     */
     @Override
-    public void execute(List<Task> list, Ui ui, Storage storage) throws DukeException, ParseException, IOException {
+    public void execute(List<Task> list, Ui ui, Storage storage) throws DukeException, IOException {
         if (ui.FullCommand.equals("done")){
             throw new DukeException("The task done number cannot be empty.");
         }
@@ -27,7 +35,10 @@ public class DoneCommand extends Command {
         }
         storage.Storages(sb.toString());
     }
-
+    /**
+     * Returns boolean true to exit the program.
+     * @return boolean.
+     */
     @Override
     public boolean isExit() {
         return false;

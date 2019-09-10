@@ -11,6 +11,11 @@ public class Storage {
     String directory = System.getProperty("user.home");
     String fileName = "sample.txt";
     String absolutePath = "C:\\Users\\Jess\\Documents\\GitHub\\duke\\src\\main\\java\\Save";
+    /**
+     * Writes data into the txt file
+     * @param fileContent The file content passed as a string
+     * @throws IOException
+     */
     protected void Storages(String fileContent) throws IOException{
 
         FileWriter fileWriter = new FileWriter(absolutePath);
@@ -19,7 +24,13 @@ public class Storage {
         fileWriter.close();
 
     }
-
+    /**
+     * Reads the txt file that is read by the FileReader. For every single task in the
+     * file, it adds them into the taskArrayList and updates the list every time the program
+     * is loaded
+     * @throws IOException
+     * @throws ParseException wrong date format
+     */
     protected ArrayList<Task> Readfile() throws IOException, ParseException {
         ArrayList<Task> tlist = new ArrayList<Task>();
         SimpleDateFormat fmt = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy");
