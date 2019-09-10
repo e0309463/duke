@@ -32,7 +32,10 @@ public class Duke {
             if(e instanceof ParseException){
                 ui.showDateFormatError();
             }
-            else {
+            else if (e instanceof IOException){
+                ui.showIOErrorMessage(e);
+            }
+            else{
                 ui.showErrorMessage(e);
             }
         }
