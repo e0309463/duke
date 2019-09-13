@@ -9,7 +9,6 @@ public class ByeCommand extends Command {
      * @param list An array list of type Task.
      * @param ui Class ui
      * @param storage class storage
-     * @return Void.
      * @throws DukeException | ParseException | IOException
      */
     @Override
@@ -18,7 +17,6 @@ public class ByeCommand extends Command {
     }
     /**
      * Returns boolean true to exit the program.
-     *
      * @return boolean.
      */
     @Override
